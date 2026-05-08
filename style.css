@@ -10,7 +10,8 @@ body {
     -webkit-user-select: none; 
     -ms-user-select: none;     
     user-select: none;
-    touch-action: manipulation;        
+    touch-action: manipulation; 
+    -webkit-tap-highlight-color: transparent;       
 }
 #click-btn {
     width: 150px;
@@ -28,6 +29,8 @@ body {
     justify-content: center;
     outline: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 #click-btn:active {
@@ -54,6 +57,7 @@ p {
     box-shadow: 0 4px #1a237e;
     width: 250px;
     outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #upgrade-click:not(:disabled):active,
