@@ -1,0 +1,133 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    -webkit-user-select: none; 
+    -ms-user-select: none;     
+    user-select: none;
+    touch-action: manipulation;        
+}
+#click-btn {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: none;
+    background-color: hsl(233, 100%, 50%);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    user-select: none;
+}
+
+#click-btn:active {
+    transform: scale(0.95);
+}
+
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+#upgrade-click, #buy-autoclicker {
+    background-color: hsl(233, 100%, 50%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 0 4px #1a237e;
+    width: 250px;
+    outline: none;
+}
+
+#upgrade-click:not(:disabled):active,
+#buy-autoclicker:not(:disabled):active {
+    transform: translateY(2px);
+    box-shadow: 0 2px #1a237e;
+}
+
+button:disabled {
+    background-color: #ccc !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    transform: none !important;
+    color: #777;
+}
+
+i {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+#stats p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#stats span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #4f46e5;
+    margin-top: 5px;
+}
+
+.click-animation {
+    position: absolute;
+    pointer-events: none; 
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    animation: floatUp 0.8s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
