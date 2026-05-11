@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schoolboy Runaway Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #quiz-container {
+            background-color: #16213e;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h1 { text-align: center; color: #e94560; }
+        .question { font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0f3460;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: left;
+            font-size: 1rem;
+        }
+        button:hover { background-color: #e94560; }
+        #result {
+            display: none;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .progress {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Побег из дома: Тест</h1>
+    <div id="quiz-content">
+        <div class="progress" id="progress">Вопрос 1 из 5</div>
+        <div class="question" id="question">Загрузка вопроса...</div>
+        <div class="options" id="options"></div>
+    </div>
+    <div id="result">
+        <h2>Тест окончен!</h2>
+        <p id="score"></p>
+        <button onclick="location.reload()" style="text-align: center;">Попробовать снова</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            q: "Какова основная цель Андрея в игре?",
+            a: ["Сделать уроки", "Сбежать из дома незаметно", "Поспать", "Посмотреть ТВ"],
+            correct: 1
+        },
+        {
+            q: "Что нужно, чтобы открутить решетку вентиляции?",
+            a: ["Ложка", "Нож", "Отвертка", "Гвоздь"],
+            correct: 2
+        },
+        {
+            q: "Как лучше всего выманить папу из комнаты?",
+            a: ["Закричать", "Выключить свет в щитке", "Разбить окно", "Включить радио"],
+            correct: 1
+        },
+        {
+            q: "Какое животное мешает пройти через двор?",
+            a: ["Злой кот", "Сторожевой пес", "Медведь", "Гусь"],
+            correct: 1
+        },
+        {
+            q: "Самый громкий звук в игре издает...",
+            a: ["Шепот", "Открытие тумбочки", "Прыжок с высоты", "Ходьба на коленях"],
+            correct: 2
+        }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+
+    function loadQuiz() {
+        if (currentIdx >= quizData.length) {
+            showResult();
+            return;
+        }
+        
+        const qData = quizData[currentIdx];
+        document.getElementById("progress").innerText = `Вопрос ${currentIdx + 1} из ${quizData.length}`;
+        document.getElementById("question").innerText = qData.q;
+        
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+        
+        qData.a.forEach((option, i) => {
+            const btn = document.createElement("button");
+            btn.innerText = option;
+            btn.onclick = () => checkAnswer(i);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+        if (selected === quizData[currentIdx].correct) {
+            score++;
+        }
+        currentIdx++;
+        loadQuiz();
+    }
+
+    function showResult() {
+        document.getElementById("quiz-content").style.display = "none";
+        document.getElementById("result").style.display = "block";
+        document.getElementById("score").innerText = `Ваш результат: ${score} из ${quizData.length}`;
+    }
+
+    loadQuiz();
+</script>
+
+</body>
+</html>
